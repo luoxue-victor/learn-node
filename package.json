@@ -31,7 +31,8 @@
   "homepage": "https://github.com/luoxue-victor/learn-node#readme",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "webpack-box eslint"
+      "webpack-box eslint",
+      "git add"
     ]
   },
   "devDependencies": {
