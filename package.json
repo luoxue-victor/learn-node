@@ -38,6 +38,7 @@
   "devDependencies": {
     "@pkb/plugin-eslint": "^1.2.10",
     "@pkb/webpack-box": "^1.2.13",
+    "@commitlint/config-conventional": "^8.2.0",
     "commitizen": "^4.0.4",
     "commitlint": "^8.3.5",
     "conventional-changelog-cli": "^2.0.31",
