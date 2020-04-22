@@ -1,5 +1,11 @@
 # 1.0.0 (2020-04-22)
 
+### 🌟 新功能
+范围|描述|commitId
+--|--|--
+ test | test | [32c1f6d](https://github.com/luoxue-victor/learn-node/commit/32c1f6d)
+
+
 ### 🐛 Bug 修复
 范围|描述|commitId
 --|--|--

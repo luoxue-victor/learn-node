@@ -44,6 +44,6 @@
     "husky": "^4.2.5",
     "vue-cli-plugin-commitlint": "^1.0.12",
     "@typescript-eslint/parser": "^2.29.0",
-    "lint-staged": "^10.1.7"
+    "lint-staged": "9.5.0"
   }
 }
