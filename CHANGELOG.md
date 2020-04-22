@@ -1,5 +1,11 @@
 # 1.0.0 (2020-04-22)
 
+### 🐛 Bug 修复
+范围|描述|commitId
+--|--|--
+ src | test | [c962c93](https://github.com/luoxue-victor/learn-node/commit/c962c93)
+
+
 ### 📦 持续集成
 范围|描述|commitId
 --|--|--
