@@ -1,0 +1,43 @@
+{
+  "name": "learn-node",
+  "version": "1.0.0",
+  "description": "从零开始系统学习node",
+  "main": "index.js",
+  "scripts": {
+    "log": "conventional-changelog --config ./node_modules/vue-cli-plugin-commitlint/lib/log -i CHANGELOG.md -s -r 0",
+    "cz": "npm run log && git add . && git cz",
+    "eslint": "webpack-box eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luoxue-victor/learn-node.git"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/vue-cli-plugin-commitlint/lib/cz"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luoxue-victor/learn-node/issues"
+  },
+  "homepage": "https://github.com/luoxue-victor/learn-node#readme",
+  "devDependencies": {
+    "@pkb/plugin-eslint": "^1.2.10",
+    "@pkb/webpack-box": "^1.2.13",
+    "commitizen": "^4.0.4",
+    "commitlint": "^8.3.5",
+    "conventional-changelog-cli": "^2.0.31",
+    "husky": "^4.2.5",
+    "vue-cli-plugin-commitlint": "^1.0.12"
+  },
+  "dependencies": {
+    "@typescript-eslint/parser": "^2.29.0"
+  }
+}
