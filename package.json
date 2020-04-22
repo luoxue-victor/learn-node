@@ -12,25 +12,37 @@
     "type": "git",
     "url": "git+https://github.com/luoxue-victor/learn-node.git"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/vue-cli-plugin-commitlint/lib/cz"
     }
   },
   "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/luoxue-victor/learn-node/issues"
   },
   "homepage": "https://github.com/luoxue-victor/learn-node#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "license": "ISC",
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "*.{vue,htm,html,css,sss,less,scss}": [
+      "webpack-box stylelint",
+      "git add"
+    ],
+    "*.{ts,tsx}": [
+      "webpack-box tslint",
+      "git add"
+    ],
+    "*.{js,jsx}": [
+      "webpack-box eslint",
+      "git add"
+    ],
+    "packages/**/*.{js,jsx}": [
       "webpack-box eslint",
       "git add"
     ]
