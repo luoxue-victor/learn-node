@@ -28,6 +28,12 @@
     "url": "https://github.com/luoxue-victor/learn-node/issues"
   },
   "homepage": "https://github.com/luoxue-victor/learn-node#readme",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "webpack-box eslint",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "@pkb/plugin-eslint": "^1.2.10",
     "@pkb/webpack-box": "^1.2.13",
