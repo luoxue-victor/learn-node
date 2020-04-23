@@ -9,7 +9,6 @@ module.exports = {
     'eslint:recommended'
   ],
   rules: {
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     semi: ['warn', 'always'],
     'no-unused-vars': ['error', { args: 'none' }],

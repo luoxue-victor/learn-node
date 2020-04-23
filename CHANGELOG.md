@@ -34,6 +34,12 @@
  src | 测试eslint | [5280358](https://github.com/luoxue-victor/learn-node/commit/5280358)
 
 
+### chore
+范围|描述|commitId
+--|--|--
+ eslint | 支持可选链 | [8d46567](https://github.com/luoxue-victor/learn-node/commit/8d46567)
+
+
 范围|描述|commitId
 --|--|--
  - | Update README.md | [3529385](https://github.com/luoxue-victor/learn-node/commit/3529385)
