@@ -38,6 +38,7 @@
 范围|描述|commitId
 --|--|--
  eslint | 支持可选链 | [8d46567](https://github.com/luoxue-victor/learn-node/commit/8d46567)
+ tools | 自动生成readme | [59346c7](https://github.com/luoxue-victor/learn-node/commit/59346c7)
 
 
 范围|描述|commitId

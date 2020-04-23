@@ -12,7 +12,7 @@ const docsCtx = extraTxt('docs', function(firstRow) {
 function joinCtx () {
   let str = '';
   str += readMdBy('header');
-  str += detailTag('所有课题', docsCtx, false);
+  str += detailTag('所有课题', docsCtx, true);
   str += readMdBy('useAndIntsall');
   str += '\n' + fs.readFileSync(path.join(__dirname, 'contributors.md')).toString();
   return str;
@@ -24,7 +24,7 @@ fs.writeFileSync('README.md', ctx, 'utf-8');
 
 function detailTag (title, ctx, isOpen = true) {
   return `
-### ${title}
+## ${title}
 <details ${isOpen ? 'open=“open”' : ''}>
   <summary>点击关闭/打开${title}</summary> 
   <br/>

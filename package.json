@@ -4,10 +4,12 @@
   "description": "从零开始系统学习node",
   "main": "index.js",
   "scripts": {
+    "issue": "node tools/issue-readme",
     "log": "conventional-changelog --config ./node_modules/vue-cli-plugin-commitlint/lib/log -i CHANGELOG.md -s -r 0",
     "docs": "node tools/create-readme",
-    "cz": "npm run docs && npm run log && git add . && git cz",
-    "fix": "webpack-box eslint"
+    "cz": "npm run build && git add . && git cz",
+    "fix": "webpack-box eslint",
+    "build": "npm run docs && npm run issue && npm run log"
   },
   "repository": {
     "type": "git",
@@ -49,6 +51,7 @@
     "conventional-changelog-cli": "^2.0.28",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
+    "request": "^2.88.2",
     "vue-cli-plugin-commitlint": "^1.0.10"
   }
 }
