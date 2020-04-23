@@ -1,9 +1,10 @@
-# 1.0.0 (2020-04-22)
+# 1.0.0 (2020-04-23)
 
 ### 🌟 新功能
 范围|描述|commitId
 --|--|--
  qwe | qweq | [33ed50f](https://github.com/luoxue-victor/learn-node/commit/33ed50f)
+ test | test | [afcf94b](https://github.com/luoxue-victor/learn-node/commit/afcf94b)
  test | test | [def2c21](https://github.com/luoxue-victor/learn-node/commit/def2c21)
  test | test | [252be4f](https://github.com/luoxue-victor/learn-node/commit/252be4f)
  test | test | [32c1f6d](https://github.com/luoxue-victor/learn-node/commit/32c1f6d)
