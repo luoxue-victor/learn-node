@@ -15,11 +15,6 @@
    */
   "eslint.alwaysShowStatus": true,
   /*
-   * @description stylelint 配置
-   * @param autoFixOnSave 保存时自动修复
-   */
-  "stylelint.autoFixOnSave": true,
-  /*
    * @description vetur 配置
    */
   "vetur.format.defaultFormatter.html": "prettier",

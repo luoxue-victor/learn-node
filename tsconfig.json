@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "target": "es6",
+    "noImplicitAny": false,
+    "allowJs": true,
+    "baseUrl": ".",
+    "outDir": "dist",
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "strictNullChecks": false,
+    "noImplicitThis": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "jsx": "react",
+    "lib": ["esnext", "dom"],
+    "types": ["node"],
+    "rootDir": ".",
+    "paths": {}
+  }
+}

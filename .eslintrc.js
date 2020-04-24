@@ -37,8 +37,6 @@ module.exports = {
     'no-new': 'off',
     // 每行最大长度小于 80，忽略注释
     'max-len': ['error', { ignoreComments: true }],
-    // 函数括号前面不加空格
-    'space-before-function-paren': ['error', 'never'],
     // 关闭要求 require() 出现在顶层模块作用域中
     'global-require': 0,
     // 关闭类方法中必须使用this
