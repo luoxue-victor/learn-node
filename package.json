@@ -39,8 +39,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@babel/preset-typescript": "^7.7.7",
+    "@babel/register": "^7.9.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@pkb/cli": "^1.2.10",
     "@pkb/plugin-eslint": "^1.2.10",
@@ -53,5 +55,8 @@
     "lint-staged": "^9.5.0",
     "request": "^2.88.2",
     "vue-cli-plugin-commitlint": "^1.0.10"
+  },
+  "dependencies": {
+    "koa": "^2.11.0"
   }
 }

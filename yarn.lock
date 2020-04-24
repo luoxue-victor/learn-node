@@ -34,7 +34,7 @@
     invariant "^2.2.4"
     semver "^5.5.0"
 
-"@babel/core@^7.1.6", "@babel/core@^7.6.0":
+"@babel/core@^7.1.6", "@babel/core@^7.6.0", "@babel/core@^7.9.0":
   version "7.9.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.9.0.tgz#ac977b538b77e132ff706f3b8a4dbad09c03c56e"
   integrity sha512-kWc7L0fw1xwvI0zi8OKVBuxRVefwGOrKSQMvrQ3dW+bIIavBY3/NpXmpjMy7bQnLgwgzWQZ8TlM57YHpHNHz4w==
@@ -814,7 +814,7 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     "@babel/plugin-transform-typescript" "^7.9.0"
 
-"@babel/register@^7.0.0", "@babel/register@^7.7.4":
+"@babel/register@^7.0.0", "@babel/register@^7.7.4", "@babel/register@^7.9.0":
   version "7.9.0"
   resolved "https://registry.yarnpkg.com/@babel/register/-/register-7.9.0.tgz#02464ede57548bddbb5e9f705d263b7c3f43d48b"
   integrity sha512-Tv8Zyi2J2VRR8g7pC5gTeIN8Ihultbmk0ocyNz8H2nEZbmhp1N6q0A1UGsQbDvGP/sNinQKUHf3SqXwqjtFv4Q==

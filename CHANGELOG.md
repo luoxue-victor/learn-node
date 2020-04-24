@@ -1,4 +1,4 @@
-# 1.0.0 (2020-04-23)
+# 1.0.0 (2020-04-24)
 
 ### 🌟 新功能
 范围|描述|commitId
@@ -20,6 +20,12 @@
  test | test | [c7dc326](https://github.com/luoxue-victor/learn-node/commit/c7dc326)
  test | test | [c4316e6](https://github.com/luoxue-victor/learn-node/commit/c4316e6)
  test | test | [94a1e02](https://github.com/luoxue-victor/learn-node/commit/94a1e02)
+
+
+### 📝 文档
+范围|描述|commitId
+--|--|--
+ docs | 自动生成文档 | [796a9a8](https://github.com/luoxue-victor/learn-node/commit/796a9a8)
 
 
 ### 📦 持续集成
