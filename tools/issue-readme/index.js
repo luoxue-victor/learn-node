@@ -19,7 +19,7 @@ const issuesSortByLabel = {};
     }
   }
 
-  allIssues.forEach(issue => {
+  allIssues.reverse().forEach(issue => {
     issue.labels.forEach(label => {
       const labelNmae = label.name
       const hasLabel = !!issuesSortByLabel[labelNmae]
