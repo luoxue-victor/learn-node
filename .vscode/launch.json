@@ -1,19 +1,16 @@
 {
-  "version": "0.2.0",
+  "version": "0.0.1",
   "configurations": [
     {
-      "name": "Current TS File",
       "type": "node",
       "request": "launch",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/app/index.ts",
-      "args": ["${workspaceRoot}/app/index.ts"],
-      "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
-      "sourceMaps": true,
+      "name": "Launch Program",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "debug"],
       "cwd": "${workspaceRoot}",
-      "protocol": "inspector",
+      "port": 3000,
       "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
+      "sourceMaps": true
     }
   ]
 }

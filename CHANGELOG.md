@@ -47,6 +47,7 @@
  eslint | 支持可选链 | [8d46567](https://github.com/luoxue-victor/learn-node/commit/8d46567)
  prettier | 项目配置优化 | [22cc54b](https://github.com/luoxue-victor/learn-node/commit/22cc54b)
  tools | 自动生成readme | [59346c7](https://github.com/luoxue-victor/learn-node/commit/59346c7)
+ ts | 搭建ts | [757960f](https://github.com/luoxue-victor/learn-node/commit/757960f)
 
 
 范围|描述|commitId

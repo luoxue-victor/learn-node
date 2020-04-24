@@ -1,7 +1,7 @@
 import Koa from 'koa'
 
 export default function () {
-  const PORT = 3000
+  const PORT = 3001
   const app = new Koa()
 
   app.use(async (ctx) => {
@@ -10,5 +10,8 @@ export default function () {
 
   app.listen(PORT)
 
-  console.log(`app run at: http://localhost:${PORT}/`)
+  console.log(
+    `app run at: 
+    http://localhost:${PORT}/`
+  )
 }

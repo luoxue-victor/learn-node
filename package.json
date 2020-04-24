@@ -10,7 +10,8 @@
     "cz": "npm run build && git add . && git cz",
     "fix": "webpack-box eslint",
     "build": "npm run docs && npm run issue && npm run log",
-    "start": "ts-node app/index.ts"
+    "start": "nodemon --ext js,ts --exec ts-node app/index.ts",
+    "debug": "nodemon --ext js,ts --exec node -r ts-node/register --inspect app/index.ts"
   },
   "repository": {
     "type": "git",
@@ -52,9 +53,8 @@
     "lint-staged": "^9.5.0",
     "request": "^2.88.2",
     "ts-node": "^8.9.0",
-    "vue-cli-plugin-commitlint": "^1.0.10"
-  },
-  "dependencies": {
-    "koa": "^2.11.0"
+    "vue-cli-plugin-commitlint": "^1.0.10",
+    "koa": "^2.11.0",
+    "nodemon": "^2.0.3"
   }
 }
