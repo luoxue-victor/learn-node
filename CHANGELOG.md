@@ -1,4 +1,4 @@
-# 1.0.0 (2020-04-24)
+# 1.0.0 (2020-04-25)
 
 ### 🌟 新功能
 范围|描述|commitId
@@ -46,6 +46,7 @@
 --|--|--
  editor | 编译器配置 | [991d891](https://github.com/luoxue-victor/learn-node/commit/991d891)
  eslint | 支持可选链 | [8d46567](https://github.com/luoxue-victor/learn-node/commit/8d46567)
+ issue | 修改issue生成 | [82920d3](https://github.com/luoxue-victor/learn-node/commit/82920d3)
  prettier | 项目配置优化 | [22cc54b](https://github.com/luoxue-victor/learn-node/commit/22cc54b)
  tools | 自动生成readme | [59346c7](https://github.com/luoxue-victor/learn-node/commit/59346c7)
  ts | 搭建ts | [757960f](https://github.com/luoxue-victor/learn-node/commit/757960f)

@@ -10,7 +10,7 @@ const issuesSortByLabel = {};
   while (true) {
     page++
     try {
-      const issueBody = await requestPromise(issueUrl, { page })
+      const issueBody = await requestPromise(issueUrl, { page, state: 'all' })
       console.log(issueBody.length)
       if (!issueBody.length) break
       allIssues.push(...issueBody)

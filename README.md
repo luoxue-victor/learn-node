@@ -23,7 +23,7 @@ yarn install
 
 ## DONE 
 
-- [第一课：使用 node 创建脚手架](https://github.com/luoxue-victor/learn-node/issues/1) 
+- [第一课：项目脚手架](https://github.com/luoxue-victor/learn-node/issues/1) 
 
 ## TODO 
 
