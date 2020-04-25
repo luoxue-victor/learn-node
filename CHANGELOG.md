@@ -15,6 +15,7 @@
 ### 🐛 Bug 修复
 范围|描述|commitId
 --|--|--
+ package.json | 修改cz命令 | [09b1079](https://github.com/luoxue-victor/learn-node/commit/09b1079)
  src | test | [c962c93](https://github.com/luoxue-victor/learn-node/commit/c962c93)
  test | test | [6e82193](https://github.com/luoxue-victor/learn-node/commit/6e82193)
  test | test | [0c2e4eb](https://github.com/luoxue-victor/learn-node/commit/0c2e4eb)
