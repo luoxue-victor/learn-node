@@ -3,6 +3,7 @@
 ### 🌟 新功能
 范围|描述|commitId
 --|--|--
+ issue | 修改issue获取接口 | [0e0109a](https://github.com/luoxue-victor/learn-node/commit/0e0109a)
  koa | 引入koa | [1075566](https://github.com/luoxue-victor/learn-node/commit/1075566)
  qwe | qweq | [33ed50f](https://github.com/luoxue-victor/learn-node/commit/33ed50f)
  test | test | [afcf94b](https://github.com/luoxue-victor/learn-node/commit/afcf94b)
