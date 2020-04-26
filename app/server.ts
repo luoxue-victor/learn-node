@@ -1,17 +1,14 @@
-import Koa from 'koa'
+import Application from '../packages/base/extend/application'
+const app = new Application()
 
-export default function () {
-  const PORT = 3001
-  const app = new Koa()
+export default class Server {
+  start () {
+    app.use((ctx) => {
+      ctx.body = 'hello world'
+    })
 
-  app.use(async (ctx) => {
-    ctx.body = 'Hello World'
-  })
-
-  app.listen(PORT)
-
-  console.log(
-    `app run at: 
-    http://localhost:${PORT}/`
-  )
+    app.listen(3000, () => {
+      console.log('listening on 3000')
+    })
+  }
 }

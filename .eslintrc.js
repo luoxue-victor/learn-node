@@ -33,10 +33,11 @@ module.exports = {
         SwitchCase: 1
       }
     ],
+    'no-useless-escape': 'off',
     // 关闭副作用的 new
     'no-new': 'off',
     // 每行最大长度小于 80，忽略注释
-    'max-len': ['error', { ignoreComments: true }],
+    'max-len': ['error', { ignoreComments: true, "comments": 120 }],
     // 关闭要求 require() 出现在顶层模块作用域中
     'global-require': 0,
     // 关闭类方法中必须使用this
@@ -45,12 +46,8 @@ module.exports = {
     'no-global-assign': 0,
     // 禁止对关系运算符的左操作数使用否定操作符
     'no-unsafe-negation': 0,
-    // 禁止使用 console
-    'no-console': 0,
     // 禁止末尾空行
-    'eol-last': 0,
-    // 关闭强制在注释中 // 或 /* 使用一致的空格
-    'spaced-comment': 0,
+    'eol-last': 1,
     // 关闭禁止对 function 的参数进行重新赋值
     'no-param-reassign': 0,
     // 要求或禁止命名的 function 表达式 (func-names)
