@@ -1,6 +1,3 @@
-'use strict'
-
-const convert = require('koa-convert')
 const is = require('is-type-of')
 const path = require('path')
 const fs = require('fs')
@@ -45,7 +42,7 @@ module.exports = {
   },
 
   middleware (fn) {
-    return is.generatorFunction(fn) ? convert(fn) : fn
+    return fn
   },
 
   getCalleeFromStack (withLine, stackIndex) {

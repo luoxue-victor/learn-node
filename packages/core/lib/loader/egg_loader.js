@@ -246,7 +246,7 @@ class EggLoader {
    */
   getEggPaths () {
     // avoid require recursively
-    const EggCore = require('../egg')
+    const EggCore = require('../my')
     const eggPaths = []
 
     let proto = this.app

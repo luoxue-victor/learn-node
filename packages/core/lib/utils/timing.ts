@@ -1,10 +1,8 @@
-'use strict'
-
 const assert = require('assert')
 const MAP = Symbol('Timing#map')
 const LIST = Symbol('Timing#list')
 
-class Timing {
+export default class Timing {
   constructor () {
     this[MAP] = new Map()
     this[LIST] = []
@@ -43,5 +41,3 @@ class Timing {
     return this[LIST]
   }
 }
-
-module.exports = Timing

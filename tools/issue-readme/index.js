@@ -1,7 +1,9 @@
 const fs = require('fs')
 const { requestPromise } = require('../request-promise')
 const issueUrl = 'https://api.github.com/repos/luoxue-victor/learn-node/issues'
-const issuesSortByLabel = {};
+const issuesSortByLabel = {}
+
+console.log('create issue');
 
 (async () => {
   let page = 0

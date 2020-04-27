@@ -1,4 +1,4 @@
-import Application from '../packages/base/extend/application'
+import Application from '../schools/koa-demo/extend/application'
 const app = new Application()
 
 export default class Server {

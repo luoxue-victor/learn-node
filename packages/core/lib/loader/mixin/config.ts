@@ -1,28 +1,26 @@
-'use strict'
+import { Console } from 'console'
 
 const debug = require('debug')('egg-core:config')
+
 const path = require('path')
 const extend = require('extend2')
 const assert = require('assert')
-const { Console } = require('console')
 
 const SET_CONFIG_META = Symbol('Loader#setConfigMeta')
 
 module.exports = {
 
-  /**
-   * Load config/config.js
-   *
-   * Will merge config.default.js 和 config.${env}.js
-   *
-   * @function EggLoader#loadConfig
-   * @since 1.0.0
-   */
   loadConfig () {
     this.timing.start('Load Config')
     this.configMeta = {}
 
-    const target = {}
+    const target = {
+      coreMiddleware: null,
+      coreMiddlewares: null,
+      appMiddleware: null,
+      appMiddlewares: null,
+      middleware: null
+    }
 
     // Load Application config first
     const appConfig = this._preloadAppConfig()

@@ -1,12 +1,9 @@
-'use strict'
-
 const assert = require('assert')
 const fs = require('fs')
 const debug = require('debug')('egg-core:loader')
 const path = require('path')
 const globby = require('globby')
 const is = require('is-type-of')
-const deprecate = require('depd')('egg')
 const utils = require('../utils')
 const FULLPATH = Symbol('EGG_LOADER_ITEM_FULLPATH')
 const EXPORTS = Symbol('EGG_LOADER_ITEM_EXPORTS')
@@ -25,11 +22,35 @@ const defaults = {
   filter: null
 }
 
-/**
- * Load files from directory to target object.
- * @since 1.0.0
- */
-class FileLoader {
+type FileLoaderOptions = {
+  directory: any;
+  target: any;
+  match?: any;
+  ignore?: any;
+  lowercaseFirst?: boolean;
+  caseStyle?: any;
+  initializer?: any;
+  call?: boolean;
+  override?: boolean;
+  inject?: any;
+  filter?: any
+}
+
+export default class FileLoader {
+  options: {
+    directory: any;
+    target: any;
+    match?: any;
+    ignore?: any;
+    lowercaseFirst?: boolean;
+    caseStyle: any;
+    initializer: any;
+    call: boolean;
+    override?: boolean;
+    inject: any;
+    filter?: any
+  } & FileLoaderOptions
+
   /**
    * @class
    * @param {Object} options - options
@@ -44,24 +65,10 @@ class FileLoader {
    * @param {Function} options.filter - a function that filter the exports which can be loaded
    * @param {String|Function} options.caseStyle - set property's case when converting a filepath to property list.
    */
-  constructor (options) {
-    assert(options.directory, 'options.directory is required')
-    assert(options.target, 'options.target is required')
+  constructor (options: FileLoaderOptions) {
     this.options = Object.assign({}, defaults, options)
-
-    // compatible old options _lowercaseFirst_
-    if (this.options.lowercaseFirst === true) {
-      deprecate('lowercaseFirst is deprecated, use caseStyle instead')
-      this.options.caseStyle = 'lower'
-    }
   }
 
-  /**
-   * attach items to target object. Mapping the directory to properties.
-   * `app/controller/group/repository.js` => `target.group.repository`
-   * @return {Object} target
-   * @since 1.0.0
-   */
   load () {
     const items = this.parse()
     const target = this.options.target
@@ -89,15 +96,14 @@ class FileLoader {
         return obj
       }, target)
     }
+
     return target
   }
 
   parse () {
     let files = this.options.match
     if (!files) {
-      files = (process.env.EGG_TYPESCRIPT === 'true' && utils.extensions['.ts'])
-        ? ['**/*.(js|ts)', '!**/*.d.ts']
-        : ['**/*.js']
+      files = ['**/*.(js|ts)', '!**/*.d.ts']
     } else {
       files = Array.isArray(files) ? files : [files]
     }
@@ -215,3 +221,12 @@ function defaultCamelize (filepath, caseStyle) {
     return first + property.substring(1)
   })
 }
+
+const target = {}
+
+new FileLoader({
+  directory: '.',
+  target
+})
+
+console.log('target', target)

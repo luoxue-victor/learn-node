@@ -1,9 +1,12 @@
-const is = require('is-type-of')
-const assert = require('assert')
+import utils from './utils'
+import { EventEmitter } from 'events'
+import is from 'is-type-of'
+import assert from 'assert'
+
 const getReady = require('get-ready')
 const { Ready } = require('ready-callback')
-const { EventEmitter } = require('events')
 const debug = require('debug')('egg-core:lifecycle')
+
 const INIT = Symbol('Lifycycle#init')
 const INIT_READY = Symbol('Lifecycle#initReady')
 const DELEGATE_READY_EVENT = Symbol('Lifecycle#delegateReadyEvent')
@@ -13,9 +16,15 @@ const IS_CLOSED = Symbol('Lifecycle#isClosed')
 const BOOT_HOOKS = Symbol('Lifecycle#bootHooks')
 const BOOTS = Symbol('Lifecycle#boots')
 
-const utils = require('./utils')
+export default class Lifecycle extends EventEmitter {
+  options: any
+  ready (arg0: (err: any) => void) {
+    throw new Error('Method not implemented.')
+  }
 
-class Lifecycle extends EventEmitter {
+  readyTimeout: number
+  loadReady: any
+  bootReady: any
   /**
    * @param {object} options - options
    * @param {String} options.baseDir - the directory of application
@@ -33,12 +42,6 @@ class Lifecycle extends EventEmitter {
     getReady.mixin(this)
 
     this.timing.start('Application Start')
-    // get app timeout from env or use default timeout 10 second
-    const eggReadyTimeoutEnv = Number.parseInt(process.env.EGG_READY_TIMEOUT_ENV || 10000)
-    assert(
-      Number.isInteger(eggReadyTimeoutEnv),
-      `process.env.EGG_READY_TIMEOUT_ENV ${process.env.EGG_READY_TIMEOUT_ENV} should be able to parseInt.`)
-    this.readyTimeout = eggReadyTimeoutEnv
 
     this[INIT_READY]()
     this
@@ -81,6 +84,7 @@ class Lifecycle extends EventEmitter {
     // app.js is exported as a function
     // call this function in configDidLoad
     this[BOOT_HOOKS].push(class Hook {
+      app: any
       constructor (app) {
         this.app = app
       }
@@ -105,7 +109,7 @@ class Lifecycle extends EventEmitter {
       scope,
       ready: this.loadReady,
       timingKeyPrefix: 'Before Start'
-    })
+    } as any)
   }
 
   registerBeforeClose (fn) {
@@ -241,7 +245,6 @@ class Lifecycle extends EventEmitter {
       throw new Error('boot only support function')
     }
 
-    // get filename from stack if scopeFullName is undefined
     const name = scopeFullName || utils.getCalleeFromStack(true, 4)
     const timingkey = `${timingKeyPrefix} in ` + utils.getResolvedFilename(name, this.app.baseDir)
 
@@ -249,7 +252,6 @@ class Lifecycle extends EventEmitter {
 
     const done = ready.readyCallback(name)
 
-    // ensure scope executes after load completed
     process.nextTick(() => {
       utils.callFn(scope).then(() => {
         done()
@@ -261,5 +263,3 @@ class Lifecycle extends EventEmitter {
     })
   }
 }
-
-module.exports = Lifecycle
