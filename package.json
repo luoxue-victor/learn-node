@@ -51,6 +51,7 @@
     "@typescript-eslint/parser": "^2.29.0",
     "commitizen": "^4.0.3",
     "commitlint": "^8.2.0",
+    "compatible-require": "^1.0.3",
     "conventional-changelog-cli": "^2.0.28",
     "husky": "^3.1.0",
     "koa": "^2.11.0",
@@ -63,6 +64,8 @@
     "vue-cli-plugin-commitlint": "^1.0.10"
   },
   "dependencies": {
-    "ts-events": "^3.4.0"
+    "is-type-of": "^1.2.1",
+    "ts-events": "^3.4.0",
+    "winston": "^3.2.1"
   }
 }

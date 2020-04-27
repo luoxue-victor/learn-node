@@ -37,7 +37,7 @@ module.exports = {
     // 关闭副作用的 new
     'no-new': 'off',
     // 每行最大长度小于 80，忽略注释
-    'max-len': ['error', { ignoreComments: true, "comments": 120 }],
+    // 'max-len': ['error', { ignoreComments: true, "comments": 120 }],
     // 关闭要求 require() 出现在顶层模块作用域中
     'global-require': 0,
     // 关闭类方法中必须使用this
@@ -50,8 +50,6 @@ module.exports = {
     'eol-last': 1,
     // 关闭禁止对 function 的参数进行重新赋值
     'no-param-reassign': 0,
-    // 要求或禁止命名的 function 表达式 (func-names)
-    'func-names': ['error', 'as-needed'],
     // 关闭要求构造函数首字母大写
     'new-cap': 0,
     // 全等校验

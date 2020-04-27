@@ -8,7 +8,7 @@
 
 - [面试题](./docs/00-node面试题.md)
 - [搭建项目基础](./docs/01-搭建项目基础.md)
-- [Koa 搭建](./docs/02-搭建koa项目.md)
+- [Koa 搭建](./docs/02-封装koa.md)
 
 </details> 
 
