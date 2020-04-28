@@ -1,8 +1,6 @@
-'use strict'
-
+import path from 'path'
 const debug = require('debug')('egg-core:extend')
 const deprecate = require('depd')('egg')
-const path = require('path')
 
 const originalPrototypes = {
   request: require('koa/lib/request'),
@@ -11,7 +9,7 @@ const originalPrototypes = {
   application: require('koa/lib/application')
 }
 
-module.exports = {
+export default {
 
   /**
    * mixin Agent.prototype
@@ -19,7 +17,7 @@ module.exports = {
    * @since 1.0.0
    */
   loadAgentExtend () {
-    this.loadExtend('agent', this.app)
+    this.loadExtend('agent', (this as any).app)
   },
 
   /**
@@ -28,7 +26,7 @@ module.exports = {
    * @since 1.0.0
    */
   loadApplicationExtend () {
-    this.loadExtend('application', this.app)
+    this.loadExtend('application', (this as any).app)
   },
 
   /**
@@ -37,7 +35,7 @@ module.exports = {
    * @since 1.0.0
    */
   loadRequestExtend () {
-    this.loadExtend('request', this.app.request)
+    this.loadExtend('request', (this as any).app.request)
   },
 
   /**
@@ -46,7 +44,7 @@ module.exports = {
    * @since 1.0.0
    */
   loadResponseExtend () {
-    this.loadExtend('response', this.app.response)
+    this.loadExtend('response', (this as any).app.response)
   },
 
   /**
@@ -55,7 +53,7 @@ module.exports = {
    * @since 1.0.0
    */
   loadContextExtend () {
-    this.loadExtend('context', this.app.context)
+    this.loadExtend('context', (this as any).app.context)
   },
 
   /**
@@ -64,8 +62,8 @@ module.exports = {
    * @since 1.0.0
    */
   loadHelperExtend () {
-    if (this.app && this.app.Helper) {
-      this.loadExtend('helper', this.app.Helper.prototype)
+    if ((this as any).app && (this as any).app.Helper) {
+      this.loadExtend('helper', (this as any).app.Helper.prototype)
     }
   },
 
@@ -78,7 +76,7 @@ module.exports = {
    * @private
    */
   getExtendFilePaths (name) {
-    return this.getLoadUnits().map(unit => path.join(unit.path, 'app/extend', name))
+    return (this as any).getLoadUnits().map(unit => path.join(unit.path, 'app/extend', name))
   },
 
   /**
@@ -89,20 +87,20 @@ module.exports = {
    * @since 1.0.0
    */
   loadExtend (name, proto) {
-    this.timing.start(`Load extend/${name}.js`)
+    (this as any).timing.start(`Load extend/${name}.js`)
     // All extend files
     const filepaths = this.getExtendFilePaths(name)
     // if use mm.env and serverEnv is not unittest
-    const isAddUnittest = 'EGG_MOCK_SERVER_ENV' in process.env && this.serverEnv !== 'unittest'
+    const isAddUnittest = 'EGG_MOCK_SERVER_ENV' in process.env && (this as any).serverEnv !== 'unittest'
     for (let i = 0, l = filepaths.length; i < l; i++) {
       const filepath = filepaths[i]
-      filepaths.push(filepath + `.${this.serverEnv}`)
+      filepaths.push(filepath + `.${(this as any).serverEnv}`)
       if (isAddUnittest) filepaths.push(filepath + '.unittest')
     }
 
     const mergeRecord = new Map()
     for (let filepath of filepaths) {
-      filepath = this.resolveModule(filepath)
+      filepath = (this as any).resolveModule(filepath)
       if (!filepath) {
         continue
       } else if (filepath.endsWith('/index.js')) {
@@ -110,10 +108,10 @@ module.exports = {
         deprecate(`app/extend/${name}/index.js is deprecated, use app/extend/${name}.js instead`)
       }
 
-      const ext = this.requireFile(filepath)
+      const ext = (this as any).requireFile(filepath)
 
       const properties = Object.getOwnPropertyNames(ext)
-        .concat(Object.getOwnPropertySymbols(ext))
+        .concat(Object.getOwnPropertySymbols(ext) as any)
 
       for (const property of properties) {
         if (mergeRecord.has(property)) {
@@ -146,6 +144,6 @@ module.exports = {
       }
       debug('merge %j to %s from %s', Object.keys(ext), name, filepath)
     }
-    this.timing.end(`Load extend/${name}.js`)
+    (this as any).timing.end(`Load extend/${name}.js`)
   }
 }

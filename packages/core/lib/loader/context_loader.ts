@@ -1,6 +1,4 @@
-'use strict'
-
-const assert = require('assert')
+import assert from 'assert'
 const is = require('is-type-of')
 const FileLoader = require('./file_loader')
 const CLASSLOADER = Symbol('classLoader')
@@ -34,7 +32,7 @@ class ClassLoader {
   }
 }
 
-class ContextLoader extends FileLoader {
+export default class ContextLoader extends FileLoader {
   constructor (options) {
     assert(options.property, 'options.property is required')
     assert(options.inject, 'options.inject is required')
@@ -68,8 +66,6 @@ class ContextLoader extends FileLoader {
     })
   }
 }
-
-module.exports = ContextLoader
 
 function getInstance (values, ctx) {
   // it's a directory when it has no exports

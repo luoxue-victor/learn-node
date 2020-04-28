@@ -1,14 +1,12 @@
-'use strict'
-
+import assert from 'assert'
 const join = require('path').join
 const is = require('is-type-of')
 const inspect = require('util').inspect
-const assert = require('assert')
 const debug = require('debug')('egg-core:middleware')
 const pathMatching = require('egg-path-matching')
 const utils = require('../../utils')
 
-module.exports = {
+export default {
 
   /**
    * Load app/middleware
@@ -30,18 +28,19 @@ module.exports = {
    * @since 1.0.0
    */
   loadMiddleware (opt) {
-    this.timing.start('Load Middleware')
-    const app = this.app
+    const _that = this as any
+    _that.timing.start('Load Middleware')
+    const app = _that.app
 
     // load middleware to app.middleware
     opt = Object.assign({
       call: false,
       override: true,
       caseStyle: 'lower',
-      directory: this.getLoadUnits().map(unit => join(unit.path, 'app/middleware'))
+      directory: _that.getLoadUnits().map(unit => join(unit.path, 'app/middleware'))
     }, opt)
     const middlewarePaths = opt.directory
-    this.loadToApp(middlewarePaths, 'middlewares', opt)
+    _that.loadToApp(middlewarePaths, 'middlewares', opt)
 
     for (const name in app.middlewares) {
       Object.defineProperty(app.middleware, name, {
@@ -53,11 +52,11 @@ module.exports = {
       })
     }
 
-    this.options.logger.info('Use coreMiddleware order: %j', this.config.coreMiddleware)
-    this.options.logger.info('Use appMiddleware order: %j', this.config.appMiddleware)
+    _that.options.logger.info('Use coreMiddleware order: %j', _that.config.coreMiddleware)
+    _that.options.logger.info('Use appMiddleware order: %j', _that.config.appMiddleware)
 
     // use middleware ordered by app.config.coreMiddleware and app.config.appMiddleware
-    const middlewareNames = this.config.coreMiddleware.concat(this.config.appMiddleware)
+    const middlewareNames = _that.config.coreMiddleware.concat(_that.config.appMiddleware)
     debug('middlewareNames: %j', middlewareNames)
     const middlewaresMap = new Map()
     for (const name of middlewareNames) {
@@ -69,7 +68,7 @@ module.exports = {
       }
       middlewaresMap.set(name, true)
 
-      const options = this.config[name] || {}
+      const options = _that.config[name] || {}
       let mw = app.middlewares[name]
       mw = mw(options, app)
       assert(is.function(mw), `Middleware ${name} must be a function, but actual is ${inspect(mw)}`)
@@ -83,14 +82,14 @@ module.exports = {
         }
         app.use(mw)
         debug('Use middleware: %s with options: %j', name, options)
-        this.options.logger.info('[egg:loader] Use middleware: %s', name)
+        _that.options.logger.info('[egg:loader] Use middleware: %s', name)
       } else {
-        this.options.logger.info('[egg:loader] Disable middleware: %s', name)
+        _that.options.logger.info('[egg:loader] Disable middleware: %s', name)
       }
     }
 
-    this.options.logger.info('[egg:loader] Loaded middleware from %j', middlewarePaths)
-    this.timing.end('Load Middleware')
+    _that.options.logger.info('[egg:loader] Loaded middleware from %j', middlewarePaths)
+    _that.timing.end('Load Middleware')
   }
 
 }

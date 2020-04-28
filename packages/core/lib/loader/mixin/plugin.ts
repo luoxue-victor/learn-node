@@ -1,12 +1,10 @@
-'use strict'
-
-const fs = require('fs')
-const path = require('path')
+import path from 'path'
+import fs from 'fs'
 const debug = require('debug')('egg-core:plugin')
 const sequencify = require('../../utils/sequencify')
 const loadFile = require('../../utils').loadFile
 
-module.exports = {
+export default {
 
   /**
    * Load config/plugin.js from {EggLoader#loadUnits}
@@ -55,14 +53,16 @@ module.exports = {
    * @since 1.0.0
    */
   loadPlugin () {
-    this.timing.start('Load Plugin')
+    const _that = this as any
+
+    _that.timing.start('Load Plugin')
 
     // loader plugins from application
-    const appPlugins = this.readPluginConfigs(path.join(this.options.baseDir, 'config/plugin.default'))
+    const appPlugins = this.readPluginConfigs(path.join(_that.options.baseDir, 'config/plugin.default'))
     debug('Loaded app plugins: %j', Object.keys(appPlugins))
 
     // loader plugins from framework
-    const eggPluginConfigPaths = this.eggPaths.map(eggPath => path.join(eggPath, 'config/plugin.default'))
+    const eggPluginConfigPaths = _that.eggPaths.map(eggPath => path.join(eggPath, 'config/plugin.default'))
     const eggPlugins = this.readPluginConfigs(eggPluginConfigPaths)
     debug('Loaded egg plugins: %j', Object.keys(eggPlugins))
 
@@ -77,41 +77,41 @@ module.exports = {
     }
 
     // loader plugins from options.plugins
-    if (this.options.plugins) {
-      customPlugins = Object.assign({}, customPlugins, this.options.plugins)
+    if (_that.options.plugins) {
+      customPlugins = Object.assign({}, customPlugins, _that.options.plugins)
     }
 
     if (customPlugins) {
       for (const name in customPlugins) {
-        this.normalizePluginConfig(customPlugins, name)
+        _that.normalizePluginConfig(customPlugins, name)
       }
       debug('Loaded custom plugins: %j', Object.keys(customPlugins))
     }
 
-    this.allPlugins = {}
-    this.appPlugins = appPlugins
-    this.customPlugins = customPlugins
-    this.eggPlugins = eggPlugins
+    _that.allPlugins = {}
+    _that.appPlugins = appPlugins
+    _that.customPlugins = customPlugins
+    _that.eggPlugins = eggPlugins
 
-    this._extendPlugins(this.allPlugins, eggPlugins)
-    this._extendPlugins(this.allPlugins, appPlugins)
-    this._extendPlugins(this.allPlugins, customPlugins)
+    this._extendPlugins(_that.allPlugins, eggPlugins)
+    this._extendPlugins(_that.allPlugins, appPlugins)
+    this._extendPlugins(_that.allPlugins, customPlugins)
 
     const enabledPluginNames = [] // enabled plugins that configured explicitly
     const plugins = {}
-    const env = this.serverEnv
-    for (const name in this.allPlugins) {
-      const plugin = this.allPlugins[name]
+    const env = _that.serverEnv
+    for (const name in _that.allPlugins) {
+      const plugin = _that.allPlugins[name]
 
       // resolve the real plugin.path based on plugin or package
-      plugin.path = this.getPluginPath(plugin, this.options.baseDir)
+      plugin.path = this.getPluginPath(plugin)
 
       // read plugin information from ${plugin.path}/package.json
       this.mergePluginConfig(plugin)
 
       // disable the plugin that not match the serverEnv
       if (env && plugin.env.length && !plugin.env.includes(env)) {
-        this.options.logger.info('Plugin %s is disabled by env unmatched, require env(%s) but got env is %s', name, plugin.env, env)
+        _that.options.logger.info('Plugin %s is disabled by env unmatched, require env(%s) but got env is %s', name, plugin.env, env)
         plugin.enable = false
         continue
       }
@@ -123,10 +123,10 @@ module.exports = {
     }
 
     // retrieve the ordered plugins
-    this.orderPlugins = this.getOrderPlugins(plugins, enabledPluginNames, appPlugins)
+    _that.orderPlugins = this.getOrderPlugins(plugins, enabledPluginNames, appPlugins)
 
     const enablePlugins = {}
-    for (const plugin of this.orderPlugins) {
+    for (const plugin of _that.orderPlugins) {
       enablePlugins[plugin.name] = plugin
     }
     debug('Loaded plugins: %j', Object.keys(enablePlugins))
@@ -136,9 +136,9 @@ module.exports = {
      * @member {Object} EggLoader#plugins
      * @since 1.0.0
      */
-    this.plugins = enablePlugins
+    _that.plugins = enablePlugins
 
-    this.timing.end('Load Plugin')
+    _that.timing.end('Load Plugin')
   },
 
   /*
@@ -148,14 +148,14 @@ module.exports = {
     if (!Array.isArray(configPaths)) {
       configPaths = [configPaths]
     }
-
+    const _that = this as any
     // Get all plugin configurations
     // plugin.default.js
     // plugin.${scope}.js
     // plugin.${env}.js
     // plugin.${scope}_${env}.js
     const newConfigPaths = []
-    for (const filename of this.getTypeFiles('plugin')) {
+    for (const filename of _that.getTypeFiles('plugin')) {
       for (let configPath of configPaths) {
         configPath = path.join(path.dirname(configPath), filename)
         newConfigPaths.push(configPath)
@@ -164,11 +164,11 @@ module.exports = {
 
     const plugins = {}
     for (const configPath of newConfigPaths) {
-      let filepath = this.resolveModule(configPath)
+      let filepath = _that.resolveModule(configPath)
 
       // let plugin.js compatible
       if (configPath.endsWith('plugin.default') && !filepath) {
-        filepath = this.resolveModule(configPath.replace(/plugin\.default$/, 'plugin'))
+        filepath = _that.resolveModule(configPath.replace(/plugin\.default$/, 'plugin'))
       }
 
       if (!filepath) {
@@ -225,6 +225,7 @@ module.exports = {
   mergePluginConfig (plugin) {
     let pkg
     let config
+    const _that = this as any
     const pluginPackage = path.join(plugin.path, 'package.json')
     if (fs.existsSync(pluginPackage)) {
       pkg = require(pluginPackage)
@@ -234,7 +235,7 @@ module.exports = {
       }
     }
 
-    const logger = this.options.logger
+    const logger = _that.options.logger
     if (!config) {
       logger.warn(`[egg:loader] pkg.eggPlugin is missing in ${pluginPackage}`)
       return
@@ -261,7 +262,7 @@ module.exports = {
     if (!enabledPluginNames.length) {
       return []
     }
-
+    const _that = this as any
     const result = sequencify(allPlugins, enabledPluginNames)
     debug('Got plugins %j after sequencify', result)
 
@@ -308,7 +309,7 @@ module.exports = {
       let message = implicitEnabledPlugins
         .map(name => `  - ${name} required by [${requireMap[name]}]`)
         .join('\n')
-      this.options.logger.info(`Following plugins will be enabled implicitly.\n${message}`)
+      _that.options.logger.info(`Following plugins will be enabled implicitly.\n${message}`)
 
       // should warn when the plugin is disabled by app
       const disabledPlugins = implicitEnabledPlugins.filter(name => appPlugins[name] && appPlugins[name].enable === false)
@@ -316,7 +317,7 @@ module.exports = {
         message = disabledPlugins
           .map(name => `  - ${name} required by [${requireMap[name]}]`)
           .join('\n')
-        this.options.logger.warn(`Following plugins will be enabled implicitly that is disabled by application.\n${message}`)
+        _that.options.logger.warn(`Following plugins will be enabled implicitly that is disabled by application.\n${message}`)
       }
     }
 
@@ -328,7 +329,7 @@ module.exports = {
     if (plugin.path) {
       return plugin.path
     }
-
+    const _that = this as any
     const name = plugin.package || plugin.name
     const lookupDirs = []
 
@@ -336,11 +337,11 @@ module.exports = {
     //  -> {APP_PATH}/node_modules
     //    -> {EGG_PATH}/node_modules
     //      -> $CWD/node_modules
-    lookupDirs.push(path.join(this.options.baseDir, 'node_modules'))
+    lookupDirs.push(path.join(_that.options.baseDir, 'node_modules'))
 
     // 到 egg 中查找，优先从外往里查找
-    for (let i = this.eggPaths.length - 1; i >= 0; i--) {
-      const eggPath = this.eggPaths[i]
+    for (let i = _that.eggPaths.length - 1; i >= 0; i--) {
+      const eggPath = _that.eggPaths[i]
       lookupDirs.push(path.join(eggPath, 'node_modules'))
     }
 
@@ -368,7 +369,7 @@ module.exports = {
         targetPlugin = target[name] = {}
       }
       if (targetPlugin.package && targetPlugin.package === plugin.package) {
-        this.options.logger.warn('plugin %s has been defined that is %j, but you define again in %s',
+        (this as any).options.logger.warn('plugin %s has been defined that is %j, but you define again in %s',
           name, targetPlugin, plugin.from)
       }
       if (plugin.path || plugin.package) {

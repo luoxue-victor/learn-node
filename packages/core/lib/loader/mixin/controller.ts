@@ -1,5 +1,5 @@
 import utils from '../../utils'
-const path = require('path')
+import path from 'path'
 const is = require('is-type-of')
 const utility = require('utility')
 const FULLPATH = require('../file_loader').FULLPATH

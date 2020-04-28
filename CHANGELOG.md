@@ -4,6 +4,7 @@
 范围|描述|commitId
 --|--|--
  app | 增加一些基础的koa封装 | [d06a6ab](https://github.com/luoxue-victor/learn-node/commit/d06a6ab)
+ core | 所有文件转换成ts | [c2149a3](https://github.com/luoxue-victor/learn-node/commit/c2149a3)
  core | 脚手架核心功能初次提交 | [b33ad8d](https://github.com/luoxue-victor/learn-node/commit/b33ad8d)
  core | 部分改成ts | [0824d08](https://github.com/luoxue-victor/learn-node/commit/0824d08)
  issue | 修改issue获取接口 | [0e0109a](https://github.com/luoxue-victor/learn-node/commit/0e0109a)

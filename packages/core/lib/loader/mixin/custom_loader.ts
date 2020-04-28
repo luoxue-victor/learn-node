@@ -1,14 +1,12 @@
-'use strict'
-
-const assert = require('assert')
-const path = require('path')
+import assert from 'assert'
+import path from 'path'
 const is = require('is-type-of')
 
-module.exports = {
+export default {
   loadCustomLoader () {
-    const loader = this
-    assert(loader.config, 'should loadConfig first')
-    const customLoader = loader.config.customLoader || {}
+    const _that = this as any
+    assert(_that.config, 'should loadConfig first')
+    const customLoader = _that.config.customLoader || {}
 
     for (const property of Object.keys(customLoader)) {
       const loaderConfig = Object.assign({}, customLoader[property])
@@ -16,9 +14,9 @@ module.exports = {
 
       let directory
       if (loaderConfig.loadunit === true) {
-        directory = this.getLoadUnits().map(unit => path.join(unit.path, loaderConfig.directory))
+        directory = (this as any).getLoadUnits().map(unit => path.join(unit.path, loaderConfig.directory))
       } else {
-        directory = path.join(loader.appInfo.baseDir, loaderConfig.directory)
+        directory = path.join(_that.appInfo.baseDir, loaderConfig.directory)
       }
       // don't override directory
       delete loaderConfig.directory
@@ -29,23 +27,23 @@ module.exports = {
 
       switch (inject) {
         case 'ctx': {
-          assert(!(property in loader.app.context), `customLoader should not override ctx.${property}`)
+          assert(!(property in _that.app.context), `customLoader should not override ctx.${property}`)
           const defaultConfig = {
             caseStyle: 'lower',
             fieldClass: `${property}Classes`
           }
-          loader.loadToContext(directory, property, Object.assign(defaultConfig, loaderConfig))
+          _that.loadToContext(directory, property, Object.assign(defaultConfig, loaderConfig))
           break
         }
         case 'app': {
-          assert(!(property in loader.app), `customLoader should not override app.${property}`)
+          assert(!(property in _that.app), `customLoader should not override app.${property}`)
           const defaultConfig = {
             caseStyle: 'lower',
             initializer (Clz) {
-              return is.class(Clz) ? new Clz(loader.app) : Clz
+              return is.class(Clz) ? new Clz(_that.app) : Clz
             }
           }
-          loader.loadToApp(directory, property, Object.assign(defaultConfig, loaderConfig))
+          _that.loadToApp(directory, property, Object.assign(defaultConfig, loaderConfig))
           break
         }
         default:

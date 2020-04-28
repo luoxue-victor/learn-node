@@ -285,15 +285,15 @@ export default class EggLoader {
 }
 
 const loaders = [
-  require('./mixin/plugin'),
-  require('./mixin/config'),
-  require('./mixin/extend'),
-  require('./mixin/custom'),
-  require('./mixin/service'),
-  require('./mixin/middleware'),
-  require('./mixin/controller'),
-  require('./mixin/router'),
-  require('./mixin/custom_loader')
+  import('./mixin/plugin'),
+  import('./mixin/config'),
+  import('./mixin/extend'),
+  import('./mixin/custom'),
+  import('./mixin/service'),
+  import('./mixin/middleware'),
+  import('./mixin/controller'),
+  import('./mixin/router'),
+  import('./mixin/custom_loader')
 ]
 
 for (const loader of loaders) {

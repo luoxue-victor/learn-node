@@ -1,10 +1,9 @@
 import { Console } from 'console'
-
+import assert from 'assert'
+import path from 'path'
 const debug = require('debug')('egg-core:config')
 
-const path = require('path')
 const extend = require('extend2')
-const assert = require('assert')
 
 const SET_CONFIG_META = Symbol('Loader#setConfigMeta')
 
