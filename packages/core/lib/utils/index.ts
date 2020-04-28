@@ -10,7 +10,7 @@ const Module = module.constructor.length > 1
   /* istanbul ignore next */
   : BuiltinModule
 
-module.exports = {
+export default {
   extensions: Module._extensions,
 
   loadFile (filepath) {
@@ -54,7 +54,9 @@ module.exports = {
     Error.stackTraceLimit = 5
 
     // capture the stack
-    const obj = {}
+    const obj = {
+      stack: []
+    }
     Error.captureStackTrace(obj)
     let callSite = obj.stack[stackIndex]
     let fileName

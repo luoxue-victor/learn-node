@@ -1,5 +1,3 @@
-'use strict'
-
 const debug = require('debug')('egg-core#sequencify')
 
 function sequence (tasks, names, results, missing, recursive, nest, optional, parent) {
@@ -37,7 +35,7 @@ function sequence (tasks, names, results, missing, recursive, nest, optional, pa
 
 // tasks: object with keys as task names
 // names: array of task names
-module.exports = (tasks, names) => {
+export default (tasks, names) => {
   const results = {
     sequence: [],
     requires: {}

@@ -1,9 +1,9 @@
-const EggCore = require('./lib/egg')
-const EggLoader = require('./lib/loader/egg_loader')
-const BaseContextClass = require('./lib/utils/base_context_class')
-const utils = require('./lib/utils')
+import EggCore from './lib/egg'
+import EggLoader from './lib/loader/egg_loader'
+import BaseContextClass from './lib/utils/base_context_class'
+import utils from './lib/utils'
 
-module.exports = {
+export default {
   EggCore,
   EggLoader,
   BaseContextClass,

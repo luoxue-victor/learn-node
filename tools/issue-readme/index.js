@@ -2,14 +2,28 @@ const fs = require('fs')
 const { requestPromise } = require('../request-promise')
 const issueUrl = 'https://api.github.com/repos/luoxue-victor/learn-node/issues'
 const issuesSortByLabel = {}
+const path = require('path')
+const configPath = path.join(__dirname, 'config.json')
 
-console.log('create issue');
+const time = Date.now()
 
-(async () => {
+const readConfig = JSON.parse(fs.readFileSync(configPath).toString())
+
+const writeConfig = (ctx) => {
+  fs.writeFileSync(configPath, JSON.stringify({ time, ctx }))
+}
+
+let isOverOneDay = false
+
+if (time - readConfig.time > 1000 * 60 * 60 * 24) isOverOneDay = true
+
+;(async () => {
   let page = 0
   let ctx = ''
   const allIssues = []
-  while (true) {
+
+  // eslint-disable-next-line no-unmodified-loop-condition
+  while (isOverOneDay) {
     page++
     try {
       const issueBody = await requestPromise(issueUrl, { page, state: 'all' })
@@ -17,7 +31,7 @@ console.log('create issue');
       if (!issueBody.length) break
       allIssues.push(...issueBody)
     } catch (error) {
-      return
+      return console.error(error)
     }
   }
 
@@ -40,5 +54,8 @@ console.log('create issue');
     })
   })
   const readme = fs.readFileSync('./README.md').toString()
-  fs.writeFileSync('./README.md', readme + ctx)
+
+  isOverOneDay && ctx && writeConfig(ctx)
+
+  fs.writeFileSync('./README.md', readme + (ctx || readConfig.ctx))
 })()

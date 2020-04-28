@@ -7,7 +7,7 @@
     "issue": "node tools/issue-readme",
     "log": "conventional-changelog --config ./node_modules/vue-cli-plugin-commitlint/lib/log -i CHANGELOG.md -s -r 0",
     "docs": "node tools/create-readme",
-    "cz": "git add . && git cz && git push",
+    "cz": "npm run build && git add . && git cz && git push",
     "fix": "webpack-box eslint",
     "build": "npm run docs && npm run issue && npm run log",
     "start": "nodemon --ext js,ts --exec ts-node app/index.ts",

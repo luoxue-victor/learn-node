@@ -1,32 +1,19 @@
-'use strict'
-
+import utils from '../../utils'
 const path = require('path')
 const is = require('is-type-of')
 const utility = require('utility')
-const utils = require('../../utils')
 const FULLPATH = require('../file_loader').FULLPATH
 
-module.exports = {
+export default {
 
-  /**
-   * Load app/controller
-   * @param {Object} opt - LoaderOptions
-   * @since 1.0.0
-   */
-  loadController (opt) {
-    this.timing.start('Load Controller')
+  loadController (opt: { directory: any }) {
+    (this as any).timing.start('Load Controller')
     opt = Object.assign({
       caseStyle: 'lower',
-      directory: path.join(this.options.baseDir, 'app/controller'),
-      initializer: (obj, opt) => {
-        // return class if it exports a function
-        // ```js
-        // module.exports = app => {
-        //   return class HomeController extends app.Controller {};
-        // }
-        // ```
+      directory: path.join((this as any).options.baseDir, 'app/controller'),
+      initializer: (obj: { (arg0: any): any; prototype: { pathName: any; fullPath: any } }, opt: { pathName: any; path: any }) => {
         if (is.function(obj) && !is.generatorFunction(obj) && !is.class(obj) && !is.asyncFunction(obj)) {
-          obj = obj(this.app)
+          obj = obj((this as any).app)
         }
         if (is.class(obj)) {
           obj.prototype.pathName = opt.pathName
@@ -36,24 +23,24 @@ module.exports = {
         if (is.object(obj)) {
           return wrapObject(obj, opt.path)
         }
-        // support generatorFunction for forward compatbility
         if (is.generatorFunction(obj) || is.asyncFunction(obj)) {
           return wrapObject({ 'module.exports': obj }, opt.path)['module.exports']
         }
         return obj
       }
     }, opt)
-    const controllerBase = opt.directory
+    // eslint-disable-next-line func-call-spacing
+    const controllerBase: any = opt.directory;
 
-    this.loadToApp(controllerBase, 'controller', opt)
-    this.options.logger.info('[egg:loader] Controller loaded: %s', controllerBase)
-    this.timing.end('Load Controller')
+    (this as any).loadToApp(controllerBase, 'controller', opt);
+    (this as any).options.logger.info('[egg:loader] Controller loaded: %s', controllerBase);
+    (this as any).timing.end('Load Controller')
   }
 
 }
 
 // wrap the class, yield a object with middlewares
-function wrapClass (Controller) {
+function wrapClass (Controller: { prototype: { fullPath: string }; name: string }) {
   let proto = Controller.prototype
   const ret = {}
   // tracing the prototype chain
@@ -70,7 +57,7 @@ function wrapClass (Controller) {
       // prevent to override sub method
       // eslint-disable-next-line no-prototype-builtins
       if (is.function(d.value) && !ret.hasOwnProperty(key)) {
-        ret[key] = methodToMiddleware(Controller, key)
+        ret[key] = methodToMiddleware(Controller as any, key)
         ret[key][FULLPATH] = Controller.prototype.fullPath + '#' + Controller.name + '.' + key + '()'
       }
     }
@@ -78,8 +65,8 @@ function wrapClass (Controller) {
   }
   return ret
 
-  function methodToMiddleware (Controller, key) {
-    return function classControllerMiddleware (...args) {
+  function methodToMiddleware (Controller: new (arg0: any) => any, key: string) {
+    return function classControllerMiddleware (this: any, ...args) {
       const controller = new Controller(this)
       if (!this.app.config.controller || !this.app.config.controller.supportParams) {
         args = [this]
@@ -90,7 +77,7 @@ function wrapClass (Controller) {
 }
 
 // wrap the method of the object, method can receive ctx as it's first argument
-function wrapObject (obj, path, prefix) {
+function wrapObject (obj: { [x: string]: any; 'module.exports'?: any }, path: any, prefix?: string) {
   const keys = Object.keys(obj)
   const ret = {}
   for (const key of keys) {
@@ -107,8 +94,8 @@ function wrapObject (obj, path, prefix) {
   }
   return ret
 
-  function functionToMiddleware (func) {
-    const objectControllerMiddleware = async function (...args) {
+  function functionToMiddleware (func: { [x: string]: any }) {
+    const objectControllerMiddleware = async function (this: any, ...args) {
       if (!this.app.config.controller || !this.app.config.controller.supportParams) {
         args = [this]
       }

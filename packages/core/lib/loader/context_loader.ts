@@ -7,6 +7,8 @@ const CLASSLOADER = Symbol('classLoader')
 const EXPORTS = FileLoader.EXPORTS
 
 class ClassLoader {
+  _cache: Map<any, any>
+  _ctx: any
   constructor (options) {
     assert(options.ctx, 'options.ctx is required')
     const properties = options.properties
@@ -32,17 +34,7 @@ class ClassLoader {
   }
 }
 
-/**
- * Same as {@link FileLoader}, but it will attach file to `inject[fieldClass]`. The exports will be lazy loaded, such as `ctx.group.repository`.
- * @extends FileLoader
- * @since 1.0.0
- */
 class ContextLoader extends FileLoader {
-  /**
-   * @class
-   * @param {Object} options - options same as {@link FileLoader}
-   * @param {String} options.fieldClass - determine the field name of inject object.
-   */
   constructor (options) {
     assert(options.property, 'options.property is required')
     assert(options.inject, 'options.inject is required')
