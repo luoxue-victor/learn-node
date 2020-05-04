@@ -1,12 +1,13 @@
-# 1.0.0 (2020-04-28)
+# 1.0.0 (2020-05-04)
 
 ### 🌟 新功能
 范围|描述|commitId
 --|--|--
  app | 增加一些基础的koa封装 | [d06a6ab](https://github.com/luoxue-victor/learn-node/commit/d06a6ab)
- core | 所有文件转换成ts | [c2149a3](https://github.com/luoxue-victor/learn-node/commit/c2149a3)
- core | 脚手架核心功能初次提交 | [b33ad8d](https://github.com/luoxue-victor/learn-node/commit/b33ad8d)
  core | 部分改成ts | [0824d08](https://github.com/luoxue-victor/learn-node/commit/0824d08)
+ core | 脚手架核心功能初次提交 | [b33ad8d](https://github.com/luoxue-victor/learn-node/commit/b33ad8d)
+ core | 所有文件转换成ts | [c2149a3](https://github.com/luoxue-victor/learn-node/commit/c2149a3)
+ core | mixin 转成 ts | [c388c58](https://github.com/luoxue-victor/learn-node/commit/c388c58)
  issue | 修改issue获取接口 | [0e0109a](https://github.com/luoxue-victor/learn-node/commit/0e0109a)
  koa | 引入koa | [1075566](https://github.com/luoxue-victor/learn-node/commit/1075566)
  qwe | qweq | [33ed50f](https://github.com/luoxue-victor/learn-node/commit/33ed50f)
@@ -34,8 +35,8 @@
 --|--|--
  docs | 修改md | [38d175b](https://github.com/luoxue-victor/learn-node/commit/38d175b)
  docs | 自动生成文档 | [796a9a8](https://github.com/luoxue-victor/learn-node/commit/796a9a8)
- readme | 生成readme | [163edeb](https://github.com/luoxue-victor/learn-node/commit/163edeb)
  readme | 跟新readme | [a825983](https://github.com/luoxue-victor/learn-node/commit/a825983)
+ readme | 生成readme | [163edeb](https://github.com/luoxue-victor/learn-node/commit/163edeb)
 
 
 ### 📦 持续集成

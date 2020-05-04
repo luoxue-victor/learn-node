@@ -31,6 +31,7 @@ if (time - readConfig.time > 1000 * 60 * 60 * 24) isOverOneDay = true
       if (!issueBody.length) break
       allIssues.push(...issueBody)
     } catch (error) {
+      isOverOneDay = false
       return console.error(error)
     }
   }

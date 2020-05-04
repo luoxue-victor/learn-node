@@ -65,8 +65,12 @@
   },
   "dependencies": {
     "extend2": "^1.0.0",
+    "http-errors": "^1.7.3",
     "is-type-of": "^1.2.1",
+    "methods": "^1.1.2",
+    "path-to-regexp": "^6.1.0",
     "ts-events": "^3.4.0",
+    "urijs": "^1.19.2",
     "winston": "^3.2.1"
   }
 }

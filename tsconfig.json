@@ -15,9 +15,7 @@
     "noImplicitThis": true,
     "experimentalDecorators": true,
     "removeComments": false,
-    "jsx": "react",
     "lib": ["esnext", "dom"],
-    "types": ["node"],
     "rootDir": ".",
     "paths": {}
   }

@@ -2,12 +2,6 @@ import path from 'path'
 
 export default {
 
-  /**
-   * Load app/service
-   * @function EggLoader#loadService
-   * @param {Object} opt - LoaderOptions
-   * @since 1.0.0
-   */
   loadService (opt) {
     (this as any).timing.start('Load Service')
     // 载入到 app.serviceClasses
@@ -21,5 +15,4 @@ export default {
     (this as any).loadToContext(servicePaths, 'service', opt);
     (this as any).timing.end('Load Service')
   }
-
 }
