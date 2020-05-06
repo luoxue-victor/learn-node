@@ -8,7 +8,7 @@
 
 - [面试题](./docs/00-node面试题.md)
 - [搭建项目基础](./docs/01-搭建项目基础.md)
-- [Koa 搭建](./docs/02-封装koa.md)
+- [Koa 搭建](./docs/02-封装koa|koa-router.md)
 
 </details> 
 
@@ -27,7 +27,7 @@ yarn install
 
 ## TODO 
 
-- [koa/express](https://github.com/luoxue-victor/learn-node/issues/2) 
+- [手写koa/koa-router源码](https://github.com/luoxue-victor/learn-node/issues/2) 
 - [WebSocket](https://github.com/luoxue-victor/learn-node/issues/3) 
 - [nginx](https://github.com/luoxue-victor/learn-node/issues/4) 
 - [爬虫](https://github.com/luoxue-victor/learn-node/issues/5) 

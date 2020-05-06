@@ -64,7 +64,6 @@ Layer.prototype.url = function (params, options) {
 
   if (args instanceof Array) {
     for (let len = tokens.length, i = 0, j = 0; i < len; i++) {
-      // 这有一个 path-to-regexp 类型的 bug，已经提了issue
       if ((tokens[i] as any).name) replace[(tokens[i] as any).name] = args[j++]
     }
   } else if (tokens.some((token) => (token as any).name)) {

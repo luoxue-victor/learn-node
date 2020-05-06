@@ -8,7 +8,7 @@ const debug = require('debug')('koa-router')
  * @module koa-router
  */
 
-export default function Router (this: any, opts: any): void {
+export default function Router (this: any, opts?: any): void {
   if (!(this instanceof Router)) {
     return new Router(opts)
   }
@@ -49,9 +49,9 @@ methods.forEach(function (method) {
 Router.prototype.del = Router.prototype.delete
 
 Router.prototype.use = function () {
-  var router = this
-  var middleware = Array.prototype.slice.call(arguments)
-  var path
+  const router = this
+  const middleware = Array.prototype.slice.call(arguments)
+  let path
 
   // support array of paths
   if (Array.isArray(middleware[0]) && typeof middleware[0][0] === 'string') {
@@ -62,7 +62,7 @@ Router.prototype.use = function () {
     return this
   }
 
-  var hasPath = typeof middleware[0] === 'string'
+  const hasPath = typeof middleware[0] === 'string'
   if (hasPath) {
     path = middleware.shift()
   }
@@ -101,14 +101,13 @@ Router.prototype.prefix = function (prefix) {
 }
 
 Router.prototype.routes = Router.prototype.middleware = function () {
-  var router = this
+  const router = this
 
-  var dispatch = function dispatch (ctx, next) {
+  const dispatch = function dispatch (ctx, next) {
     debug('%s %s', ctx.method, ctx.path)
 
-    var path = router.opts.routerPath || ctx.routerPath || ctx.path
-    var matched = router.match(path, ctx.method)
-    var layerChain
+    const path = router.opts.routerPath || ctx.routerPath || ctx.path
+    const matched = router.match(path, ctx.method)
 
     if (ctx.matched) {
       ctx.matched.push.apply(ctx.matched, matched.path)
@@ -120,14 +119,14 @@ Router.prototype.routes = Router.prototype.middleware = function () {
 
     if (!matched.route) return next()
 
-    var matchedLayers = matched.pathAndMethod
-    var mostSpecificLayer = matchedLayers[matchedLayers.length - 1]
+    const matchedLayers = matched.pathAndMethod
+    const mostSpecificLayer = matchedLayers[matchedLayers.length - 1]
     ctx._matchedRoute = mostSpecificLayer.path
     if (mostSpecificLayer.name) {
       ctx._matchedRouteName = mostSpecificLayer.name
     }
 
-    layerChain = matchedLayers.reduce(function (memo, layer) {
+    const layerChain = matchedLayers.reduce(function (memo, layer) {
       memo.push(function (ctx, next) {
         ctx.captures = layer.captures(path, ctx.captures)
         ctx.params = layer.params(path, ctx.captures, ctx.params)

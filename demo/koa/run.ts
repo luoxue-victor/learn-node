@@ -1,5 +1,7 @@
-import Application from '../demo/koa/extend/application'
+import Application from './extend/application'
 const app = new Application()
+
+console.log('koa-demo')
 
 export default class Server {
   start () {
@@ -13,3 +15,7 @@ export default class Server {
     })
   }
 }
+
+const server = new Server()
+
+server.start()

@@ -11,7 +11,9 @@
     "fix": "webpack-box eslint",
     "build": "npm run docs && npm run issue && npm run log",
     "start": "nodemon --ext js,ts --exec ts-node app/index.ts",
-    "debug": "nodemon --ext js,ts --exec node -r ts-node/register --inspect app/index.ts"
+    "demo-koa": "nodemon --ext js,ts --exec ts-node demo/koa/run.ts",
+    "demo-koa-router": "nodemon --ext js,ts --exec ts-node demo/koa-router/run.ts",
+    "debug": "nodemon --ext js,ts --exec node -r ts-node/register --inspect app/run.ts"
   },
   "repository": {
     "type": "git",

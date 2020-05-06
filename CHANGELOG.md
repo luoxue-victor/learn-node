@@ -1,4 +1,4 @@
-# 1.0.0 (2020-05-04)
+# 1.0.0 (2020-05-06)
 
 ### 🌟 新功能
 范围|描述|commitId
@@ -8,6 +8,7 @@
  core | 脚手架核心功能初次提交 | [b33ad8d](https://github.com/luoxue-victor/learn-node/commit/b33ad8d)
  core | 所有文件转换成ts | [c2149a3](https://github.com/luoxue-victor/learn-node/commit/c2149a3)
  core | mixin 转成 ts | [c388c58](https://github.com/luoxue-victor/learn-node/commit/c388c58)
+ demo | koa完成 | [df5c86d](https://github.com/luoxue-victor/learn-node/commit/df5c86d)
  issue | 修改issue获取接口 | [0e0109a](https://github.com/luoxue-victor/learn-node/commit/0e0109a)
  koa | 引入koa | [1075566](https://github.com/luoxue-victor/learn-node/commit/1075566)
  qwe | qweq | [33ed50f](https://github.com/luoxue-victor/learn-node/commit/33ed50f)
