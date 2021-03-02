@@ -72,7 +72,7 @@
     "methods": "^1.1.2",
     "path-to-regexp": "^6.1.0",
     "ts-events": "^3.4.0",
-    "urijs": "^1.19.2",
+    "urijs": "^1.19.6",
     "winston": "^3.2.1"
   }
 }
